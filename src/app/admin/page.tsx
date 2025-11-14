@@ -27,6 +27,7 @@ export default function AdminPage() {
       setIsAuthenticated(true);
       void fetchConfessions("pending", savedAuth);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {

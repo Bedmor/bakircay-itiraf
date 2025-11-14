@@ -28,7 +28,7 @@ export default function ConfessionsPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchConfessions(1);
+    void fetchConfessions(1);
   }, []);
 
   const fetchConfessions = async (page: number) => {
@@ -50,7 +50,7 @@ export default function ConfessionsPage() {
   };
 
   const handlePageChange = (newPage: number) => {
-    fetchConfessions(newPage);
+    void fetchConfessions(newPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -98,7 +98,7 @@ export default function ConfessionsPage() {
 
         {loading ? (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {[...Array(9)].map((_, i) => (
+            {Array.from({ length: 9 }).map((_, i) => (
               <div
                 key={i}
                 className="h-48 animate-pulse rounded-2xl bg-gradient-to-br from-purple-100 to-pink-100 shadow-lg"
@@ -125,7 +125,7 @@ export default function ConfessionsPage() {
                 </button>
 
                 <div className="flex gap-2">
-                  {[...Array(pagination.totalPages)].map((_, i) => {
+                  {Array.from({ length: pagination.totalPages }).map((_, i) => {
                     const pageNum = i + 1;
                     const isCurrentPage = pageNum === pagination.page;
                     const shouldShow =

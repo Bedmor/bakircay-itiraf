@@ -47,7 +47,7 @@ export default function ConfessionForm() {
           text: data.error ?? "Bir hata oluştu",
         });
       }
-    } catch (error) {
+    } catch {
       setMessage({
         type: "error",
         text: "Bağlantı hatası. Lütfen tekrar deneyin.",

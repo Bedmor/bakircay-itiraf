@@ -9,10 +9,11 @@ interface Confession {
 
 async function getLatestConfessions() {
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000";
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000"}/api/confessions/latest`,
+      `${baseUrl}/api/confessions/latest`,
       {
-        cache: "no-store",
+        next: { revalidate: 60 }, // Revalidate her 60 saniyede bir
       },
     );
 
