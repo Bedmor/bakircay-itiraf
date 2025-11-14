@@ -1,37 +1,124 @@
 import Link from "next/link";
+import ConfessionCard from "./components/ConfessionCard";
 
-export default function HomePage() {
+interface Confession {
+  id: string;
+  content: string;
+  createdAt: string;
+}
+
+async function getLatestConfessions() {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000"}/api/confessions/latest`,
+      {
+        cache: "no-store",
+      },
+    );
+
+    if (!response.ok) {
+      return [];
+    }
+
+    const data = (await response.json()) as { confessions: Confession[] };
+    return data.confessions;
+  } catch (error) {
+    console.error("Error fetching confessions:", error);
+    return [];
+  }
+}
+
+export default async function HomePage() {
+  const latestConfessions = await getLatestConfessions();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+      {/* Header */}
+      <header className="border-b bg-white/80 shadow-lg backdrop-blur-md">
+        <div className="container mx-auto flex items-center justify-between px-4 py-4">
+          <h1 className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-3xl font-extrabold text-transparent">
+            İtiraf Sitesi
+          </h1>
+          <nav className="flex gap-6">
+            <Link
+              href="/"
+              className="font-semibold text-purple-600 transition-colors hover:text-purple-800"
+            >
+              Ana Sayfa
+            </Link>
+            <Link
+              href="/confessions"
+              className="font-semibold text-gray-600 transition-colors hover:text-pink-600"
+            >
+              Tüm İtiraflar
+            </Link>
+            <Link
+              href="/admin"
+              className="font-semibold text-gray-600 transition-colors hover:text-blue-600"
+            >
+              Admin
+            </Link>
+          </nav>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <div className="animate-fade-in mb-12 text-center">
+          <h2 className="mb-4 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-5xl font-extrabold text-transparent">
+            Anonim İtiraflarını Paylaş
+          </h2>
+          <p className="mb-8 text-xl font-medium text-gray-700">
+            Kimliğini gizleyerek içini dök. Onaylandıktan sonra yayınlanacak.
+          </p>
           <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
+            href="/submit"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition-all hover:shadow-xl"
           >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
+            İtiraf Yaz
           </Link>
         </div>
-      </div>
-    </main>
+
+        {/* Latest Confessions */}
+        <div className="mb-8">
+          <div className="mb-6 flex items-center justify-between">
+            <h3 className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-3xl font-bold text-transparent">
+              Son İtiraflar
+            </h3>
+            <Link
+              href="/confessions"
+              className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 font-semibold text-white transition-all hover:shadow-lg"
+            >
+              Tümünü Gör
+              <span className="transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </div>
+
+          {latestConfessions.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {latestConfessions.map((confession) => (
+                <ConfessionCard key={confession.id} confession={confession} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-lg bg-white p-12 text-center shadow-md">
+              <p className="text-gray-600">
+                Henüz onaylanmış itiraf bulunmuyor. İlk itirafı sen yap!
+              </p>
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-12 border-t bg-white py-6">
+        <div className="container mx-auto px-4 text-center text-gray-600">
+          <p>© 2025 İtiraf Sitesi - Tüm hakları saklıdır.</p>
+        </div>
+      </footer>
+    </div>
   );
 }
