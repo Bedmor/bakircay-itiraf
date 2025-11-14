@@ -8,8 +8,8 @@ generator client {
 
 datasource db {
     provider = "postgresql"
-    url      = env("DATABASE_URL")
-    directUrl = env("DIRECT_URL")
+    url      = env("POSTGRES_PRISMA_URL") // Uses connection pooling for queries
+    directUrl = env("POSTGRES_URL") // Direct connection for migrations
 }
 
 model Confession {
