@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "../../../../generated/prisma";
-
-const prisma = new PrismaClient();
+import { db } from "~/server/db";
 
 // GET - Onaylı itirafları getir
 export async function GET(request: Request) {
@@ -12,7 +10,7 @@ export async function GET(request: Request) {
     const skip = (page - 1) * limit;
 
     const [confessions, total] = await Promise.all([
-      prisma.confession.findMany({
+      db.confession.findMany({
         where: {
           isApproved: true,
         },
@@ -22,7 +20,7 @@ export async function GET(request: Request) {
         skip,
         take: limit,
       }),
-      prisma.confession.count({
+      db.confession.count({
         where: {
           isApproved: true,
         },
@@ -66,7 +64,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const confession = await prisma.confession.create({
+    const confession = await db.confession.create({
       data: {
         content: body.content.trim(),
       },

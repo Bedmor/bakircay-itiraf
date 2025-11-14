@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "../../../../../../generated/prisma";
-
-const prisma = new PrismaClient();
+import { db } from "~/server/db";
 
 // Admin şifresi kontrolü
 function checkAdminAuth(request: Request): boolean {
@@ -12,8 +10,8 @@ function checkAdminAuth(request: Request): boolean {
     return false;
   }
 
-  const token = authHeader.substring(7);
-  return token === adminPassword;
+  const token = authHeader.substring(7).trim();
+  return token === adminPassword.trim();
 }
 
 // PATCH - İtirafı onayla/reddet
@@ -29,7 +27,7 @@ export async function PATCH(
     const { id } = await params;
     const body = (await request.json()) as { isApproved: boolean };
 
-    const confession = await prisma.confession.update({
+    const confession = await db.confession.update({
       where: { id },
       data: {
         isApproved: body.isApproved,
@@ -61,7 +59,7 @@ export async function DELETE(
   try {
     const { id } = await params;
 
-    await prisma.confession.delete({
+    await db.confession.delete({
       where: { id },
     });
 

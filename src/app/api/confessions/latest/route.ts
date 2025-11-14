@@ -1,12 +1,10 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "../../../../../generated/prisma";
-
-const prisma = new PrismaClient();
+import { db } from "~/server/db";
 
 // GET - En son onaylı itirafları getir (ana sayfa için)
 export async function GET() {
   try {
-    const confessions = await prisma.confession.findMany({
+    const confessions = await db.confession.findMany({
       where: {
         isApproved: true,
       },

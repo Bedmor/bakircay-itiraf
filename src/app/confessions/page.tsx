@@ -91,9 +91,11 @@ export default function ConfessionsPage() {
           <h2 className="mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-5xl font-extrabold text-transparent">
             Tüm İtiraflar
           </h2>
-          <p className="text-xl font-semibold text-gray-700">
-            Toplam {pagination.total} onaylanmış itiraf
-          </p>
+          {!loading && (
+            <p className="text-xl font-semibold text-gray-700">
+              Toplam {pagination.total} onaylanmış itiraf
+            </p>
+          )}
         </div>
 
         {loading ? (

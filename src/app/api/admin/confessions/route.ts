@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "../../../../../generated/prisma";
-
-const prisma = new PrismaClient();
+import { db } from "~/server/db";
 
 // Admin şifresi kontrolü
 function checkAdminAuth(request: Request): boolean {
@@ -12,8 +10,8 @@ function checkAdminAuth(request: Request): boolean {
     return false;
   }
 
-  const token = authHeader.substring(7);
-  return token === adminPassword;
+  const token = authHeader.substring(7).trim();
+  return token === adminPassword.trim();
 }
 
 // GET - Tüm itirafları getir (admin için)
@@ -33,7 +31,7 @@ export async function GET(request: Request) {
       where = { isApproved: true };
     }
 
-    const confessions = await prisma.confession.findMany({
+    const confessions = await db.confession.findMany({
       where,
       orderBy: {
         createdAt: "desc",

@@ -34,19 +34,30 @@ export default function AdminPage() {
     e.preventDefault();
     setError("");
 
+    const trimmedPassword = password.trim();
+    if (!trimmedPassword) {
+      setError("Lütfen şifre girin");
+      return;
+    }
+
     try {
       const response = await fetch("/api/admin/confessions?status=all", {
         headers: {
-          Authorization: `Bearer ${password}`,
+          Authorization: `Bearer ${trimmedPassword}`,
         },
       });
 
       if (response.ok) {
         setIsAuthenticated(true);
-        localStorage.setItem("adminAuth", password);
-        void fetchConfessions(filter, password);
+        localStorage.setItem("adminAuth", trimmedPassword);
+        void fetchConfessions(filter, trimmedPassword);
       } else {
-        setError("Hatalı şifre");
+        try {
+          const errorData = (await response.json()) as { error?: string };
+          setError(errorData.error ?? "Hatalı şifre");
+        } catch {
+          setError("Hatalı şifre");
+        }
       }
     } catch {
       setError("Bağlantı hatası");
