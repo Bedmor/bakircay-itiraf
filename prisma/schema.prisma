@@ -8,8 +8,8 @@ generator client {
 
 datasource db {
     provider = "postgresql"
-    url      = env("DATABASE_URL") // Supabase connection string
-    directUrl = env("DIRECT_URL") // Supabase direct connection (for migrations)
+    url      = env("PRISMA_DATABASE_URL") // Uses connection pooling for queries
+    directUrl = env("POSTGRES_URL") // Direct connection for migrations
 }
 
 model Confession {
