@@ -1,0 +1,5 @@
+{
+  "buildCommand": "prisma db push && prisma generate && next build",
+  "installCommand": "npm ci --ignore-scripts && npm run postinstall",
+  "framework": "nextjs"
+}
