@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ConfessionCard from "../components/ConfessionCard";
+import HeadTitle from "../components/HeadTitle";
 
 interface Confession {
   id: string;
@@ -55,13 +56,11 @@ export default function ConfessionsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+    <div className="min-h-screen bg-linear-to-br from-purple-50 via-pink-50 to-blue-50">
       {/* Header */}
       <header className="border-b bg-white/80 shadow-lg backdrop-blur-md">
         <div className="container mx-auto flex items-center justify-between px-4 py-4">
-          <h1 className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-3xl font-extrabold text-transparent">
-            İtiraf Sitesi
-          </h1>
+          <HeadTitle />
           <nav className="flex gap-6">
             <Link
               href="/"
@@ -88,12 +87,12 @@ export default function ConfessionsPage() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <div className="animate-fade-in mb-8 text-center">
-          <h2 className="mb-3 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-5xl font-extrabold text-transparent">
+          <h2 className="mb-3 bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-5xl font-extrabold text-transparent">
             Tüm İtiraflar
           </h2>
           {!loading && (
             <p className="text-xl font-semibold text-gray-700">
-              Toplam {pagination.total} onaylanmış itiraf
+              Toplam {pagination.total  ?? 0} onaylanmış itiraf
             </p>
           )}
         </div>
@@ -103,7 +102,7 @@ export default function ConfessionsPage() {
             {Array.from({ length: 9 }).map((_, i) => (
               <div
                 key={i}
-                className="h-48 animate-pulse rounded-2xl bg-gradient-to-br from-purple-100 to-pink-100 shadow-lg"
+                className="h-48 animate-pulse rounded-2xl bg-linear-to-br from-purple-100 to-pink-100 shadow-lg"
               />
             ))}
           </div>
@@ -121,7 +120,7 @@ export default function ConfessionsPage() {
                 <button
                   onClick={() => handlePageChange(pagination.page - 1)}
                   disabled={pagination.page === 1}
-                  className="rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                  className="rounded-xl bg-linear-to-r from-purple-600 to-pink-600 px-6 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
                 >
                   ← Önceki
                 </button>
@@ -158,7 +157,7 @@ export default function ConfessionsPage() {
                         onClick={() => handlePageChange(pageNum)}
                         className={`rounded-xl px-4 py-2 font-bold shadow-lg transition-all hover:scale-105 ${
                           isCurrentPage
-                            ? "scale-110 bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+                            ? "scale-110 bg-linear-to-r from-purple-600 to-pink-600 text-white"
                             : "bg-white text-gray-700 hover:bg-purple-50"
                         }`}
                       >
@@ -171,7 +170,7 @@ export default function ConfessionsPage() {
                 <button
                   onClick={() => handlePageChange(pagination.page + 1)}
                   disabled={pagination.page === pagination.totalPages}
-                  className="rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                  className="rounded-xl bg-linear-to-r from-purple-600 to-pink-600 px-6 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
                 >
                   Sonraki →
                 </button>

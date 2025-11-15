@@ -140,11 +140,11 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-purple-50 via-pink-50 to-blue-50">
         <div className="w-full max-w-md rounded-2xl border border-purple-100 bg-white/90 p-10 shadow-2xl backdrop-blur-lg">
           <div className="mb-8 text-center">
             <div className="mb-4 text-6xl">🔐</div>
-            <h1 className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-4xl font-extrabold text-transparent">
+            <h1 className="bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-4xl font-extrabold text-transparent">
               Admin Girişi
             </h1>
           </div>
@@ -161,18 +161,18 @@ export default function AdminPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-xl border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50 px-4 py-3 transition-all focus:border-purple-500 focus:ring-4 focus:ring-purple-200 focus:outline-none"
+                className="w-full rounded-xl border-2 border-purple-200 bg-linear-to-br from-purple-50 to-pink-50 px-4 py-3 transition-all focus:border-purple-500 focus:ring-4 focus:ring-purple-200 focus:outline-none"
                 placeholder="Admin şifrenizi girin"
               />
             </div>
             {error && (
-              <div className="rounded-xl border-2 border-red-200 bg-gradient-to-r from-red-100 to-pink-100 p-4 font-semibold text-red-800">
+              <div className="rounded-xl border-2 border-red-200 bg-linear-to-r from-red-100 to-pink-100 p-4 font-semibold text-red-800">
                 ⚠️ {error}
               </div>
             )}
             <button
               type="submit"
-              className="w-full rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4 text-lg font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-2xl"
+              className="w-full rounded-xl bg-linear-to-r from-purple-600 to-pink-600 px-6 py-4 text-lg font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-2xl"
             >
               🚀 Giriş Yap
             </button>
@@ -191,11 +191,11 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+    <div className="min-h-screen bg-linear-to-br from-purple-50 via-pink-50 to-blue-50">
       {/* Header */}
       <header className="border-b bg-white/80 shadow-lg backdrop-blur-md">
         <div className="container mx-auto flex items-center justify-between px-4 py-4">
-          <h1 className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-3xl font-extrabold text-transparent">
+          <h1 className="bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-3xl font-extrabold text-transparent">
             Admin Paneli
           </h1>
           <div className="flex gap-6">
@@ -223,7 +223,7 @@ export default function AdminPage() {
               onClick={() => handleFilterChange("pending")}
               className={`rounded-xl px-6 py-3 font-bold shadow-lg transition-all ${
                 filter === "pending"
-                  ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white"
+                  ? "bg-linear-to-r from-yellow-500 to-orange-500 text-white"
                   : "bg-white text-gray-700 hover:bg-yellow-50"
               }`}
             >
@@ -233,7 +233,7 @@ export default function AdminPage() {
               onClick={() => handleFilterChange("approved")}
               className={`rounded-xl px-6 py-3 font-bold shadow-lg transition-all ${
                 filter === "approved"
-                  ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white"
+                  ? "bg-linear-to-r from-green-500 to-emerald-500 text-white"
                   : "bg-white text-gray-700 hover:bg-green-50"
               }`}
             >
@@ -243,7 +243,7 @@ export default function AdminPage() {
               onClick={() => handleFilterChange("all")}
               className={`rounded-xl px-6 py-3 font-bold shadow-lg transition-all ${
                 filter === "all"
-                  ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+                  ? "bg-linear-to-r from-purple-600 to-pink-600 text-white"
                   : "bg-white text-gray-700 hover:bg-purple-50"
               }`}
             >
@@ -266,8 +266,8 @@ export default function AdminPage() {
                     <span
                       className={`inline-block rounded-full px-4 py-2 text-sm font-bold shadow-md ${
                         confession.isApproved
-                          ? "bg-gradient-to-r from-green-400 to-emerald-500 text-white"
-                          : "bg-gradient-to-r from-yellow-400 to-orange-500 text-white"
+                          ? "bg-linear-to-r from-green-400 to-emerald-500 text-white"
+                          : "bg-linear-to-r from-yellow-400 to-orange-500 text-white"
                       }`}
                     >
                       {confession.isApproved ? "✅ Onaylandı" : "⏳ Bekliyor"}
@@ -287,7 +287,7 @@ export default function AdminPage() {
                   {!confession.isApproved && (
                     <button
                       onClick={() => handleApprove(confession.id, true)}
-                      className="rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                      className="rounded-xl bg-linear-to-r from-green-500 to-emerald-600 px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                     >
                       ✅ Onayla
                     </button>
@@ -295,14 +295,14 @@ export default function AdminPage() {
                   {confession.isApproved && (
                     <button
                       onClick={() => handleApprove(confession.id, false)}
-                      className="rounded-xl bg-gradient-to-r from-orange-500 to-red-500 px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                      className="rounded-xl bg-linear-to-r from-orange-500 to-red-500 px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                     >
                       ⚠️ Onayı Kaldır
                     </button>
                   )}
                   <button
                     onClick={() => handleDelete(confession.id)}
-                    className="rounded-xl bg-gradient-to-r from-red-600 to-pink-600 px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                    className="rounded-xl bg-linear-to-r from-red-600 to-pink-600 px-6 py-3 text-sm font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                   >
                     🗑️ Sil
                   </button>

@@ -3,11 +3,11 @@ import ConfessionForm from "../components/ConfessionForm";
 
 export default function SubmitPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50">
+    <div className="min-h-screen bg-linear-to-br from-purple-50 via-pink-50 to-blue-50">
       {/* Header */}
       <header className="border-b bg-white/80 shadow-lg backdrop-blur-md">
         <div className="container mx-auto flex items-center justify-between px-4 py-4">
-          <h1 className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-3xl font-extrabold text-transparent">
+          <h1 className="bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-3xl font-extrabold text-transparent">
             İtiraf Sitesi
           </h1>
           <nav className="flex gap-6">
@@ -37,7 +37,7 @@ export default function SubmitPage() {
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="animate-fade-in mb-12 text-center">
-          <h2 className="mb-4 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-5xl font-extrabold text-transparent">
+          <h2 className="mb-4 bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-5xl font-extrabold text-transparent">
             Anonim İtirafını Paylaş
           </h2>
           <p className="text-xl font-medium text-gray-700">
@@ -52,7 +52,7 @@ export default function SubmitPage() {
 
         {/* Info Section */}
         <div className="mx-auto mt-12 max-w-3xl rounded-2xl bg-white/80 p-8 shadow-xl backdrop-blur-sm">
-          <h3 className="mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-2xl font-bold text-transparent">
+          <h3 className="mb-4 bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-2xl font-bold text-transparent">
             Bilgilendirme
           </h3>
           <ul className="space-y-4 text-gray-700">
@@ -79,7 +79,7 @@ export default function SubmitPage() {
         <div className="mt-8 text-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-purple-600 to-pink-600 px-8 py-3 font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
           >
             ← Ana Sayfaya Dön
           </Link>
