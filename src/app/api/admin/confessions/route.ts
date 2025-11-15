@@ -6,7 +6,7 @@ function checkAdminAuth(request: Request): boolean {
   const authHeader = request.headers.get("authorization");
   const adminPassword = process.env.ADMIN_PASSWORD;
 
-  if (!authHeader?.startsWith("Bearer ")) {
+  if (!authHeader?.startsWith("Bearer ") || !adminPassword) {
     return false;
   }
 
